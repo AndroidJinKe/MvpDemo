@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="default_font_color">#666666</color>
+    <color name="default_font_color_deep">#333333</color>
+    <color name="default_font_color_edt">#888888</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg_ddd">#DDDDDD</color>
+    <color name="main">#6E4FB9</color>
+</resources>

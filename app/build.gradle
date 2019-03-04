@@ -1,0 +1,87 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'com.android.application'
+//apply plugin: 'com.neenbedankt.android-apt'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.yipin.baseproject"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+
+    productFlavors {
+        //开发环境
+        develop {
+            buildConfigField "String", "base_url", "\"baseURL\""
+        }
+
+        //正式环境
+        product {
+            buildConfigField "String", "base_url", "\"baseURL\""
+        }
+    }
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def fileName = outputFile.name.replace(outputFile.name,
+                        "BaseProject" + "_V${defaultConfig.versionName}_${defaultConfig.versionCode}_${getDate()}_${variant.productFlavors[0].name}.apk")
+                outputFileName = fileName
+            }
+        }
+    }
+
+}
+
+def getDate() {
+    return new SimpleDateFormat("MMdd_HHmm").format(new Date())
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //dagger2
+    implementation 'com.google.dagger:dagger:2.7'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation project(':logger')
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation files('libs/platform_sdk_v2.4.0210.jar')
+}
+
+
+
+

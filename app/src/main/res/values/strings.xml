@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BaseProject</string>
+    <string name="api_system_exception">系统异常，请重试</string>
+
+
+    <string name="update_immediately">立即更新</string>
+    <string name="update_delay">稍后再说</string>
+    <string name="install_immediately">立即安装</string>
+
+    <string name="net_work_not_good">网络不给力，请检查网络设置！</string>
+    <string name="un_connect_net">网络未连接，请检查网络设置！</string>
+    <string name="request_fail">请求失败！</string>
+
+
+
+</resources>
